@@ -1,17 +1,11 @@
 import express, { response } from "express"
+import "./database"
+import { routes } from "../routes"
 
 const app = express();
 
-// GET
-app.get("/", (request, response) => {
-    return response.send("Hello, this is my first request on back-end!")
-})
+app.use(express.json())
 
-// POST
-app.post("/post", (request, response) => {
-    return response.json({
-        message: "This message is for my first POST request"
-    })
-})
+app.use(routes)
 
 app.listen(3001, () => console.log("Server running on port 3001"))
